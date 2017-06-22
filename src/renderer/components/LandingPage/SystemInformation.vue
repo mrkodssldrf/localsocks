@@ -4,6 +4,16 @@
 
         <div class="items">
             <div class="item">
+                <div class="name">Connect to:</div>
+                <div class="value">
+                    <input type="text" id="ipAddress" placeholder="0.0.0.0" v-if="notConnected"
+                           @keyup.enter="connectTo">
+                    <p v-if="!notConnected"> {{ connectedTo }}
+                        <button @click="disconnect">Disconnect</button>
+                    </p>
+                </div>
+            </div>
+            <div class="item">
                 <div class="name">Time:</div>
                 <div class="value">{{ time }}</div>
             </div>
@@ -41,6 +51,8 @@
   export default {
     data () {
       return {
+        notConnected: true,
+        connectedTo: null,
         time: new Date().toLocaleTimeString(),
         electron: process.versions['atom-shell'],
         name: 'landing-page',
@@ -55,14 +67,31 @@
         let s = "ss:ww:12"
 //        console.log(n.match(/^(\d+):(\d+):(\d+)$/)[3].charAt(1) == 0 ? 'Zehn Sekunden' : '')
         n.match(/^(\d+):(\d+):(\d+)$/)[3] == "00"
-          ? Notifier.notify({title : "", message : "Eine Minute"})
+          ? Notifier.notify({
+          title: "",
+          message: "Eine Minute"
+        })
           : ''
       }
     },
+    methods: {
+      connectTo(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        let sock = new SocketIOClient(`http://${e.target.value}:3000`);
+        sock.emit('connected', null)
+        sock.on('server.infos', (d) => console.log(d))
+        this.connectedTo = sock.toString()
+        this.notConnected = false
+      },
+      disconnect(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        this.notConnected = true
+        this.connectedTo = null
+      }
+    },
     mounted() {
-      let sock = new SocketIOClient('http://192.168.2.11:3000');
-      sock.on('con', d => console.log(d))
-      console.log(sock)
       setInterval(() => this.time = new Date().toLocaleTimeString(), 1000)
     }
   }
