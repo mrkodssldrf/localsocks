@@ -61,6 +61,7 @@
     },
     mounted() {
       let sock = new SocketIOClient('http://192.168.2.11:3000');
+      sock.on('con', d => console.log(d))
       console.log(sock)
       setInterval(() => this.time = new Date().toLocaleTimeString(), 1000)
     }
