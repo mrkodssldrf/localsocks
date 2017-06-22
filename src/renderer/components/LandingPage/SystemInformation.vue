@@ -53,14 +53,15 @@
     watch: {
       time(n, o) {
         let s = "ss:ww:12"
-        console.log(n.match(/^(\d+):(\d+):(\d+)$/)[3].charAt(1) == 0 ? 'Zehn Sekunden' : '')
+//        console.log(n.match(/^(\d+):(\d+):(\d+)$/)[3].charAt(1) == 0 ? 'Zehn Sekunden' : '')
         n.match(/^(\d+):(\d+):(\d+)$/)[3] == "00"
           ? Notifier.notify({title : "", message : "Eine Minute"})
           : ''
       }
     },
     mounted() {
-      let sock = new SocketIOClient('http://localhost:3000');
+      let sock = new SocketIOClient('http://192.168.2.11:3000');
+      console.log(sock)
       setInterval(() => this.time = new Date().toLocaleTimeString(), 1000)
     }
   }
