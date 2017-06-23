@@ -18,7 +18,7 @@ socketIo.on('connection', s => {
   s.on('disconnect', () => console.log('gone'))
 })
 console.log(process.env.LOCAL_SOCKET_DEV)
-if (process.env.LOCAL_SOCKET_DEV == "1") {
+if (process.env.LOCAL_SOCKET_DEV) {
   http.listen(process.env.LOCAL_SOCKET_PORT, process.env.LOCAL_SOCKET_SERVER_DEV, () => console.log(http))
 }
 else {
