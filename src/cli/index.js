@@ -1,5 +1,8 @@
-const socketIo = require('socket.io').listen(3000)
+const http = require('http').createServer()
+const socketIo = require('socket.io')(http)
 const os = require('os')
+
+
 
 socketIo.on('connection', s =>{
 
@@ -12,4 +15,4 @@ socketIo.on('connection', s =>{
 
   s.on('disconnect', () => console.log('gone'))
 })
-console.log("start")
+http.listen(3001, '10.0.0.10', () => console.log(http))
