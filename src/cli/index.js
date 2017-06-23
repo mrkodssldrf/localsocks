@@ -15,4 +15,4 @@ socketIo.on('connection', s =>{
 
   s.on('disconnect', () => console.log('gone'))
 })
-http.listen(3001, '10.0.0.10', () => console.log(http))
+http.listen(3001, '10.0.0.2', () => console.log(http))
