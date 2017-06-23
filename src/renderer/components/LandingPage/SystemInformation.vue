@@ -78,7 +78,7 @@
       connectTo(e) {
         e.preventDefault()
         e.stopPropagation()
-        let sock = new SocketIOClient(`http://${e.target.value}:3000`);
+        let sock = new SocketIOClient(`http://${e.target.value}:3001`);
         sock.emit('connected', null)
         sock.on('server.infos', (d) => console.log(d))
         this.connectedTo = sock.toString()
