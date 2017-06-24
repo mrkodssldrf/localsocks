@@ -63,22 +63,13 @@
       }
     },
     watch: {
-      time(n, o) {
-        let s = "ss:ww:12"
-//        console.log(n.match(/^(\d+):(\d+):(\d+)$/)[3].charAt(1) == 0 ? 'Zehn Sekunden' : '')
-        n.match(/^(\d+):(\d+):(\d+)$/)[3] == "00"
-          ? Notifier.notify({
-          title: "",
-          message: "Eine Minute"
-        })
-          : ''
-      }
+
     },
     methods: {
       connectTo(e) {
         e.preventDefault()
         e.stopPropagation()
-        let sock = new SocketIOClient(`http://${e.target.value}:3000`);
+        let sock = new SocketIOClient(`http://${e.target.value}:3001`);
         sock.emit('connected', null)
         sock.on('server.infos', (d) => console.log(d))
         this.connectedTo = sock.toString()

@@ -41,19 +41,10 @@
   <component name="CoffeeLintProjectComponent">
     <option name="nodeInterpreter" value="" />
   </component>
-  <component name="ComposerJsonPluginSettings">
-    <unboundedVersionInspectionSettings>
-      <excludedPackages />
-    </unboundedVersionInspectionSettings>
-    <customRepositories />
-  </component>
   <component name="EclipseCodeFormatter">
     <option name="defaultSettings" value="true" />
     <option name="id" value="1470088825093" />
     <option name="name" value="default" />
-  </component>
-  <component name="EmacsSettings">
-    <option name="emacsPath" value="/usr/bin/emacs" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
